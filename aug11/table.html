@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="background-color: black; color: white; font-size: 30px;">
+
+    <center>
+        <!-- A table of 2x3 -->
+        <table border="1">
+            <tr>
+                <th colspan="2">Name and age</th>
+                <!-- <th>Age</th> -->
+                <th>marks</th>
+            </tr>
+            <tr>
+                <td>Adwait</td>
+                <td>20</td>
+                <td>47</td>
+            </tr>
+            <tr>
+                <td>Shashank</td>
+                <td>19</td>
+                <td>50</td>
+            </tr>
+            <!-- shortcuts -->
+            <!-- tr>td -->
+            <!-- tr*4>td*4 -->
+        </table>
+
+        <br>
+        <hr>
+
+        <!-- A form -->
+        <form>
+            <label for="name">Name</label>
+            <input type="text" placeholder="name">
+            <br>
+            <label for="age">Age</label>
+            <input type="number" name="age" id="" placeholder="age">
+            <br>
+            <label for="marks">Marks</label>
+            <input type="number" name="marks" id="" placeholder="marks">
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+
+        <br>
+        <hr>
+
+
+        <!-- Images in tables -->
+
+        <table border="1" cellpadding="10" cellspacing="0px">
+            <tr>
+                <th>Name</th>
+                <th>Image</th>
+            </tr>
+            <tr>
+                <td>Dragon</td>
+                <td><img src="https://images.unsplash.com/photo-1601987077677-5346c0c57d3f?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="dragon" height="80px"></td>
+            </tr>
+            <tr>
+                <td>Books</td>
+                <td><img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZWR1Y2F0aW9ufGVufDB8fDB8fHww"
+                        alt="" height="80px"></td>
+            </tr>
+            <tr>
+                <td>Car</td>
+                <td><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2Fyc3xlbnwwfHwwfHx8MA%3D%3D"
+                        alt="" height="80px"></td>
+            </tr>
+        </table>
+
+        <br>
+        <hr>
+
+        <!-- Assignment -->
+
+        <table border="1" cellspacing="0" style="border: 2px solid red; background-color: rgb(231, 231, 148); color: black; border-radius: 10px;">
+            <tr>
+                <th colspan="3">My Daily Meal</th>
+            </tr>
+            <tr>
+                <!-- <td rowspan="3">
+                M
+                <br>
+                O
+                <br>
+                N
+                <br>
+                D
+                <br>
+                A
+                <br>
+                Y
+            </td> -->
+                <td rowspan="3" style="text-align: center; padding: 20px;writing-mode: vertical-rl; text-orientation: upright;">
+                    MONDAY
+                </td>
+                <td style="padding: 30px;">Breakfast</td>
+                <td style="padding: 30px;">
+                    Orange juice
+                    <br>
+                    Toast
+                    <br>
+                    Black Coffee
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 30px;">Lunch</td>
+                <td style="padding: 30px;">
+                    Tuna sandwich
+                    <br>
+                    Apple
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 30px;">Dinner</td>
+                <td style="padding: 30px;">
+                    Orange juice
+                    <br>
+                    Toast
+                    <br>
+                    Black Coffee
+                    <br>
+                    Idli
+                </td>
+            </tr>
+        </table>
+    </center>
+
+</body>
+
+</html>
