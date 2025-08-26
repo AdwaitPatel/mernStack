@@ -24,10 +24,6 @@ button {
     font-weight: bold;
 }
 
-#main-cta {
-    background-color: #1DB954;
-}
-
 .flex {
     display: flex;
     justify-content: center;
@@ -52,13 +48,22 @@ button {
     align-items: center;
 }
 
+#main-cta {
+    background-color: #1DB954;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 1.5rem;
+}
+
 nav {
     background-color: black;
     color: white;
-    padding: 1.5rem;
-    margin: 2rem;
+    padding: 1rem;
     border-radius: 2rem;
-    position: fixed;
 }
 
 .nav-links {
@@ -68,12 +73,11 @@ nav {
 }
 
 main {
-    padding: 1.5rem;
     margin: 2rem;
 }
 
 section {
-    padding: 2rem;
+    padding: 3rem;
 }
 
 .hero {
@@ -85,7 +89,6 @@ section {
     font-size: 1.8rem;
     margin: 1.2rem 0rem;
     line-height: 3rem;
-
 }
 
 footer {
