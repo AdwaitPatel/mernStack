@@ -1,6 +1,7 @@
 * {
     margin: 0%;
     padding: 0%;
+    transition: all 0.2s ease-in-out;
 }
 
 body {
@@ -26,6 +27,11 @@ button {
     margin: 1rem 0rem;
     border-radius: 2rem;
     font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: translateY(-5px);
 }
 
 .flex {
@@ -59,11 +65,12 @@ button {
 header {
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 1;
     padding: 1.5rem;
 }
 
 nav {
+    flex-wrap: wrap;
     background-color: black;
     color: white;
     padding: 1rem;
@@ -71,6 +78,7 @@ nav {
 }
 
 .nav-links {
+    flex-wrap: wrap;
     font-weight: bold;
     gap: 2rem;
     font-size: 1rem;
@@ -84,6 +92,8 @@ section {
     padding: 3rem;
 }
 
+/* Hero Section */
+
 .hero {
     background-color: rgb(102, 51, 153, 0.3);
     border-radius: 2rem;
@@ -95,6 +105,82 @@ section {
     line-height: 3rem;
 }
 
+/* Featured Section */
+
+.featured {
+    padding: 0rem;
+}
+
+.featured>h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 5rem 0rem;
+}
+
+.featured-compass-word {
+    color: #1DB954;
+    font-style: italic;
+    text-decoration: underline dashed 5px;
+}
+
+.cards {
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    background-color: #1DB954;
+    padding: 0rem 0rem 1rem 0rem;
+    border-radius: 1rem;
+    max-width: 350px;
+    position: relative;
+}
+
+.card:hover {
+    transform: translate3d(0.4rem, -0.4rem, 0rem);
+    box-shadow: 8px 8px 10px rgba(0,0,0,0.3);
+}
+
+.card>h3 {
+    font-size: 1.5rem;
+}
+
+.card>img {
+    height: 250px;
+    width: 100%;
+    border-radius: 1rem 1rem 0rem 0rem;
+}
+
+.card>p {
+    font-size: 1.2rem;
+    font-family: 'Gill Sans';
+    padding: 0rem 1.2rem 0rem 1.2rem;
+}
+
+.read-more-btn {
+    font-size: 1rem;
+    padding: 0.3rem 0.5rem;
+}
+
+.badge {
+    background-color: rgb(233, 156, 156);
+    padding: .3rem 0.5rem;
+    border-radius: 2rem;
+
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+}
+
+
+/* FOOTER */
+
 footer {
     background-color: black;
     color: white;
@@ -103,9 +189,14 @@ footer {
     border-radius: 2rem;
 }
 
+.main-footer {
+    flex-wrap: wrap;
+}
+
 .footer-links,
 .social {
     font-size: 1rem;
+    margin-top: 2rem;
 }
 
 .social {
