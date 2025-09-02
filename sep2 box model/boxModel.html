@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0%;
+            padding: 0%;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: gray;
+        }
+        .rectangle {
+            margin-top: 200px;
+            background-color: black;
+            height: 500px;
+            width: 300px;
+            border: 5px solid hotpink;
+            color: white;
+        }
+        .rectangle > img {
+            width: 100px;
+            height: 100px;
+            margin: 1.5rem 6rem;
+            background-color: greenyellow;
+            border-radius: 50%;
+        }
+
+        /* Position */
+        .container {
+
+        }
+
+        .container > div {
+            width: 100px;
+            height: 100px;
+            background-color: lawngreen;
+            border: 2px solid deepskyblue;
+        }
+
+        #box2 {
+            position: relative;
+            left: 20rem;
+            bottom: -7rem;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <fieldset class="rectangle">
+        <!-- This will show on the top of border -->
+        <legend style="font-size: 2rem;">Legends</legend>
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGVvcGxlfGVufDB8fDB8fHww" alt="">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGVvcGxlfGVufDB8fDB8fHww" alt="">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGVvcGxlfGVufDB8fDB8fHww" alt="">
+    </fieldset>
+
+    <div class="container">
+        <div id="box1">Box 1</div>
+        <div id="box2">Box 2</div>
+        <div id="box3">Box 3</div>
+        <div id="box4">Box 4</div>
+        <div id="box5">Box 5</div>
+        <div id="box6">Box 6</div>
+        <div id="box7">Box 7</div>
+        <div id="box8">Box 8</div>
+    </div>
+</body>
+</html>
