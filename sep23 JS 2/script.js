@@ -11,7 +11,7 @@ function digitSum(num) {
 	return sum;
 }
 
-console.log(`Sum of Digits = ${digitSum(12345)}`);
+// take input from terminal
 
 const readline = require('readline');
 const rl = readline.createInterface({
@@ -20,8 +20,7 @@ const rl = readline.createInterface({
 });
 
 rl.question('Enter a number: ', (answer) => {
-	console.log('entered type: ', typeof answer);
+	console.log(`Sum of Digits = ${digitSum(answer)}`);
 	rl.close();
 });
 
-//

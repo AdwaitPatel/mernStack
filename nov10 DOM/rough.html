@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>rough work</title>
+    <style></style>
+  </head>
+  <body>
+    <div class="outer">
+      <button class="inner">Click Me!!!</button>
+    </div>
+
+    <script>
+      let inner = document.querySelector(".inner");
+      let outer = document.querySelector(".outer");
+
+      inner.addEventListener("click", (e) => {
+        console.log("Inner clicked");
+        e.stopPropagation();
+      });
+      outer.addEventListener("click", () => {
+        console.log("Outer Clicked");
+      });
+    </script>
+  </body>
+</html>
