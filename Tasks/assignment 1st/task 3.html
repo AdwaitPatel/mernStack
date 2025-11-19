@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 3: Weather Information App</title>
+    <style>
+      * {
+        margin: 0%;
+        padding: 0%;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: black;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        flex-direction: column;
+        gap: 2rem;
+        font-family: monospace;
+        font-weight: 800;
+      }
+      #cityName {
+        font-size: 25px;
+        padding: 10px 20px;
+        border-radius: 50px;
+      }
+      #get-weather-btn {
+        font-size: 15px;
+        padding: 10px 20px;
+        border-radius: 50px;
+        cursor: pointer;
+      }
+      form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+      }
+      .weather-info {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <input
+        type="text"
+        name="city"
+        id="cityName"
+        placeholder="Enter City Name"
+      />
+      <input type="button" value="Get Weather" id="get-weather-btn" />
+    </form>
+
+    <div class="weather-info"></div>
+
+    <script>
+      const cityName = document.getElementById("cityName");
+      const getWeatherBtn = document.getElementById("get-weather-btn");
+      const weatherInfo = document.querySelector(".weather-info");
+
+      const API_KEY = "edc7ac7cecb3c3ef8cbb64bc9e2423e1";
+      const Endpoint = "https://api.openweathermap.org/data/2.5/weather";
+
+      const displayData = (tempeature, description) => {
+        const temp = document.createElement("h1");
+        const info = document.createElement("h2");
+        temp.textContent = "Temperature : " + tempeature + "°C";
+        info.textContent = "Details : " + description;
+        weatherInfo.appendChild(temp);
+        weatherInfo.appendChild(info);
+      };
+
+      const fetchWeather = async (city) => {
+        const res = await fetch(
+          `${Endpoint}?q=${city}&appid=${API_KEY}&units=metric`
+        );
+        const data = await res.json();
+        if (data.cod === "404") {
+          alert(data.message);
+          cityName.value = "";
+          return;
+        }
+        return data;
+      };
+
+      getWeatherBtn.addEventListener("click", () => {
+        weatherInfo.innerHTML = "";
+        fetchWeather(cityName.value)
+          .then((res) => {
+            const { main, weather } = res;
+            displayData(main.temp, weather[0].description);
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      });
+    </script>
+  </body>
+</html>

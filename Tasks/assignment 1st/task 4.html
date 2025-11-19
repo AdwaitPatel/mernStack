@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 4: Post Loader with Delayed Promise</title>
+    <style>
+      * {
+        margin: 0%;
+        padding: 0%;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: black;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        flex-direction: column;
+        gap: 2rem;
+        font-family: monospace;
+      }
+      .posts {
+        font-size: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="posts">
+    </ul>
+    <script>
+      const loadPosts = () => {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            const posts = [
+              "How to Learn JavaScript",
+              "Understanding Promises",
+              "Async Programming Made Easy",
+              "Why Developers Love React",
+            ];
+            if (!posts) {
+              reject("Failed to load posts");
+            } else {
+              resolve(posts);
+            }
+          }, 2000);
+        });
+      };
+      const displayPosts = async () => {
+        const postsUL = document.querySelector(".posts");
+        postsUL.innerHTML = "Loading Posts...";
+        try {
+            const res = await loadPosts();
+            
+            postsUL.innerHTML = "";
+            res.forEach((post) => {
+                const li = document.createElement("li");
+                li.textContent = post;
+                postsUL.appendChild(li)
+            })
+        } catch (error) {
+            postsUL.innerHTML = "Error : " + error;
+        }
+      }
+      displayPosts();
+    </script>
+  </body>
+</html>

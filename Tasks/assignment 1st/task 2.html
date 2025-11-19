@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 2: Random Joke Generator</title>
+    <style>
+      * {
+        margin: 0%;
+        padding: 0%;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: black;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        flex-direction: column;
+        gap: 2rem;
+        font-family: monospace;
+      }
+      .next-btn {
+        font-size: 20px;
+        padding: 10px 25px;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      .next-btn:disabled {
+        opacity: 0.8;
+        cursor: not-allowed;
+        color: white;
+      }
+      .joke {
+        padding: 5rem;
+        border-radius: 10px;
+        background-color: azure;
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="joke"></div>
+    <button class="next-btn">Get Joke</button>
+    <script>
+      const nextBtn = document.querySelector(".next-btn");
+      const jokeBox = document.querySelector(".joke");
+
+      const displayData = (setup, punchline) => {
+        const h1 = document.createElement("h1")
+        h1.innerText = setup + "\n" + punchline
+        jokeBox.appendChild(h1)
+      };
+
+      const fetchData = async () => {
+        const response = await fetch(
+          "https://official-joke-api.appspot.com/random_joke"
+        );
+        const jokes = await response.json();
+        return jokes;
+      };
+
+      nextBtn.addEventListener("click", () => {
+        nextBtn.innerText = "Fetching...";
+        nextBtn.disabled = true;
+        jokeBox.innerHTML = ""
+
+        setTimeout(() => {
+          fetchData()
+            .then((response) => {
+              displayData(response.setup, response.punchline)
+              console.log(response)
+            })
+            .catch((error) => console.log("Error : ", error));
+
+          nextBtn.innerText = "Next Joke ➡️";
+          nextBtn.disabled = false;
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>
