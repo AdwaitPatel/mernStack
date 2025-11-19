@@ -39,8 +39,6 @@ Instructions:
 - Add a search box to filter displayed products dynamically as the user types.
 Bonus: Implement debounce logic for efficient searching.
 
-
-
 ## Task 6: Sequential Promise Execution
 Objective: Demonstrate understanding of Promise chaining and async flow.
 Instructions:
