@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 1: Fetch and Display User Data</title>
+    <style>
+      * {
+        margin: 0%;
+        padding: 0%;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: black;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        flex-direction: column;
+        gap: 2rem;
+        font-family: monospace;
+      }
+      .container {
+        column-count: 3;
+        column-gap: 30px;
+        width: 90%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .container a {
+        display: inline-block;
+        width: 100%;
+        break-inside: avoid;
+      }
+      .container img {
+        width: 100%;
+        border-radius: 12px;
+        margin-bottom: 30px;
+      }
+      .load-more-btn {
+        padding: 10px 20px;
+        background-color: white;
+        color: black;
+        font-weight: bold;
+        border-radius: 8px;
+        cursor: pointer;
+        margin: 50px auto;
+      }
+      @media (max-width: 900px) {
+        .container {
+          column-count: 2;
+        }
+      }
+      @media (max-width: 600px) {
+        .container {
+          column-count: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="margin-top: 5rem">Image Gallery Loader</h1>
+
+    <div class="container"></div>
+    <button id="loadMoreBtn" class="load-more-btn">Load More</button>
+    <script>
+      let currentPage = 1;
+      const limit = 30;
+
+      const fetchImages = async (page, limit) => {
+        const res = await fetch(
+          `https://picsum.photos/v2/list?page=${page}&limit=${limit}`
+        );
+        const images = await res.json();
+        console.log(images);
+        return images;
+      };
+
+      const displayImages = async (page) => {
+        const container = document.querySelector(".container");
+        const images = await fetchImages(page, limit);
+        images.forEach((image) => {
+            const a = document.createElement("a");
+            a.href = image.url;
+
+            const cardImg = document.createElement("img");
+            cardImg.src = image.download_url;
+            cardImg.alt = image.author;
+
+            a.appendChild(cardImg);
+            container.appendChild(a);
+        });
+      };
+
+      const loadMoreBtn = document.getElementById("loadMoreBtn");
+      loadMoreBtn.addEventListener("click", () => {
+          currentPage++;
+          displayImages(currentPage);
+      });
+
+      displayImages(currentPage);
+    </script>
+  </body>
+</html>
