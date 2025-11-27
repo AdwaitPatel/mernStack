@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cricket Scoreboard</title>
+    <style>
+      body {
+        font-family: monospace;
+        font-weight: 900;
+        margin: 50px;
+      }
+      h2 {
+        margin-top: 30px;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 10px;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        padding: 6px;
+        text-align: center;
+      }
+      .panel {
+        border: 1px solid #444;
+        padding: 15px;
+        margin-top: 20px;
+      }
+      button {
+        padding: 8px 12px;
+        margin: 3px;
+      }
+      .score {
+        font-size: 32px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Cricket Score Dashboard</h1>
+
+    <!-- SCORE PANEL -->
+    <div class="panel">
+      <h2>Score Display</h2>
+      <div class="score">
+        Score: <span id="score">0</span>/<span id="wickets">0</span>
+        &nbsp;&nbsp;&nbsp; Overs: <span id="overs">0.0</span>
+      </div>
+      Run Rate: <span id="rr">0.00</span>
+    </div>
+
+    <!-- BATTING TABLE -->
+    <div class="panel">
+      <h2>Batting Scorecard</h2>
+      <table id="batTable">
+        <thead>
+          <tr>
+            <th>Batsman</th>
+            <th>R</th>
+            <th>B</th>
+            <th>4s</th>
+            <th>6s</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- BOWLING TABLE -->
+    <div class="panel">
+      <h2>Bowling Summary</h2>
+      <table id="bowlTable">
+        <thead>
+          <tr>
+            <th>Bowler</th>
+            <th>O</th>
+            <th>R</th>
+            <th>W</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- BALL CONTROLS -->
+    <div class="panel">
+      <h2>Ball Controls</h2>
+
+      <select id="bowlerSelect"></select>
+      <select id="strikerSelect"></select>
+
+      <br /><br />
+
+      <button onclick="addBall(0)">0</button>
+      <button onclick="addBall(1)">1</button>
+      <button onclick="addBall(2)">2</button>
+      <button onclick="addBall(3)">3</button>
+      <button onclick="addBall(4)">4</button>
+      <button onclick="addBall(6)">6</button>
+
+      <button onclick="wide()">Wide</button>
+      <button onclick="noball()">No-ball</button>
+      <button onclick="wicket()">Wicket</button>
+
+      <button onclick="undo()">Undo</button>
+    </div>
+
+    <!-- Log -->
+    <div class="panel">
+      <h2>Ball Log</h2>
+      <div id="log"></div>
+    </div>
+
+    <!-- Save/Load -->
+    <div class="panel">
+      <button onclick="saveMatch()">Save</button>
+      <button onclick="loadMatch()">Load</button>
+      <button onclick="resetMatch()">Reset</button>
+    </div>
+
+    <script>
+      let score = 0,
+        wickets = 0;
+      let balls = 0; // total legal balls
+      let log = [];
+      let batsmen = [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "A6",
+        "A7",
+        "A8",
+        "A9",
+        "A10",
+        "A11",
+      ];
+      let bowlers = [
+        "B1", 
+        "B2", 
+        "B3", 
+        "B4", 
+        "B5"
+    ];
+      let striker = 0,
+        nonStriker = 1;
+      let bowlerStats = {};
+      let batStats = {};
+      let currentBowler = "B1";
+
+      // INIT TABLES
+      function init() {
+        batsmen.forEach(
+          (b) => (batStats[b] = { r: 0, b: 0, f: 0, s: 0, out: false })
+        );
+        bowlers.forEach((b) => (bowlerStats[b] = { o: 0, r: 0, w: 0 }));
+
+        updateTables();
+
+        // dropdowns
+        bowlerSelect.innerHTML = bowlers
+          .map((b) => `<option>${b}</option>`)
+        //   .join("");
+        strikerSelect.innerHTML = batsmen
+          .map((b) => `<option>${b}</option>`)
+        //   .join("");
+      }
+      init();
+
+      function updateScoreboard() {
+        document.getElementById("score").innerText = score;
+        document.getElementById("wickets").innerText = wickets;
+        document.getElementById("overs").innerText =
+          Math.floor(balls / 6) + "." + (balls % 6);
+
+        let overs = balls / 6;
+        document.getElementById("rr").innerText = overs
+          ? (score / overs).toFixed(2)
+          : "0.00";
+      }
+
+      function updateTables() {
+        // Batting
+        document.querySelector("#batTable tbody").innerHTML = batsmen
+          .map(
+            (b) => `
+            <tr>
+                <td>${b}${batStats[b].out ? " (out)" : ""}</td>
+                <td>${batStats[b].r}</td>
+                <td>${batStats[b].b}</td>
+                <td>${batStats[b].f}</td>
+                <td>${batStats[b].s}</td>
+            </tr>
+        `
+          )
+          .join("");
+
+        // Bowling
+        document.querySelector("#bowlTable tbody").innerHTML = bowlers
+          .map(
+            (b) => `
+            <tr>
+                <td>${b}</td>
+                <td>${bowlerStats[b].o}</td>
+                <td>${bowlerStats[b].r}</td>
+                <td>${bowlerStats[b].w}</td>
+            </tr>
+        `
+          )
+          .join("");
+      }
+
+      function addBall(runs) {
+        currentBowler = bowlerSelect.value;
+        let strikerBatsman = strikerSelect.value;
+
+        // update stats
+        batStats[strikerBatsman].r += runs;
+        batStats[strikerBatsman].b += 1;
+        if (runs == 4) batStats[strikerBatsman].f++;
+        if (runs == 6) batStats[strikerBatsman].s++;
+
+        bowlerStats[currentBowler].r += runs;
+
+        score += runs;
+        balls++;
+
+        // strike rotation
+        if (runs % 2 == 1) {
+          rotateStrike();
+        }
+        if (balls % 6 == 0) {
+          bowlerStats[currentBowler].o++;
+          rotateStrike();
+        }
+
+        log.push(`Ball: ${runs} runs`);
+        updateDisplay();
+      }
+
+      function wide() {
+        score++;
+        bowlerStats[currentBowler].r += 1;
+        log.push("Wide");
+        updateDisplay();
+      }
+
+      function noball() {
+        score++;
+        bowlerStats[currentBowler].r += 1;
+        log.push("No-ball");
+        updateDisplay();
+      }
+
+      function wicket() {
+        wickets++;
+        let strikerBatsman = strikerSelect.value;
+        batStats[strikerBatsman].out = true;
+        log.push("Wicket");
+
+        // next batsman
+        for (let b of batsmen) {
+          if (
+            !batStats[b].out &&
+            b !== strikerSelect.value &&
+            b !== nonStriker
+          ) {
+            strikerSelect.value = b;
+            break;
+          }
+        }
+
+        bowlerStats[currentBowler].w++;
+        balls++;
+
+        if (balls % 6 == 0) {
+          bowlerStats[currentBowler].o++;
+          rotateStrike();
+        }
+
+        updateDisplay();
+      }
+
+      function rotateStrike() {
+        let temp = strikerSelect.value;
+        strikerSelect.value = nonStriker;
+        nonStriker = temp;
+      }
+
+      function undo() {
+        if (log.length == 0) return;
+        resetMatch();
+      }
+
+      function updateDisplay() {
+        document.getElementById("log").innerHTML = log.join("<br>");
+        updateScoreboard();
+        updateTables();
+      }
+
+      function saveMatch() {
+        localStorage.setItem(
+          "match",
+          JSON.stringify({
+            score,
+            wickets,
+            balls,
+            log,
+            batStats,
+            bowlerStats,
+          })
+        );
+        alert("Saved");
+      }
+
+      function loadMatch() {
+        let data = JSON.parse(localStorage.getItem("match"));
+        if (!data) return;
+
+        score = data.score;
+        wickets = data.wickets;
+        balls = data.balls;
+        log = data.log;
+        batStats = data.batStats;
+        bowlerStats = data.bowlerStats;
+
+        updateDisplay();
+      }
+
+      function resetMatch() {
+        score = 0;
+        wickets = 0;
+        balls = 0;
+        log = [];
+        init();
+        updateDisplay();
+      }
+    </script>
+  </body>
+</html>

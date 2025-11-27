@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game 1: Gun-Water-Snake (Two Player Game)</title>
+    <style>
+      * {
+        margin: 0%;
+        padding: 0%;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: black;
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 500px 1fr;
+        color: white;
+        gap: 2rem;
+        font-family: monospace;
+      }
+      .flex-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .flex-between {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .flex-around {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+      .flex-evenly {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+      .container {
+        flex-direction: column;
+        gap: 80px;
+      }
+      .round {
+        font-size: 40px;
+      }
+      .choice-box {
+        gap: 50px;
+      }
+      .choice {
+        border: 2px solid black;
+        font-size: 50px;
+        background-color: white;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        padding: 50px;
+      }
+      .choice:hover {
+        border: 2px solid white;
+        background-color: black;
+      }
+      .score-info {
+        flex-direction: column;
+        gap: 20px;
+      }
+      aside {
+        flex-direction: column;
+        gap: 200px;
+        border-right: 2px solid white;
+      }
+      .rules {
+        gap: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .rules ul li {
+        font-size: 20px;
+      }
+      .hidden {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.8s ease;
+      }
+      .visible {
+        opacity: 1;
+        pointer-events: auto;
+        transition: opacity 0.8s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <aside class="flex-center">
+      <div class="rules flex-center">
+        <h1>Rules</h1>
+        <ul>
+          <li>Gun kills Snake 🔫 => 🐍</li>
+          <li>Snake drinks Water 🐍 => 💧</li>
+          <li>Water douses Gun 💧 => 🔫</li>
+        </ul>
+      </div>
+      <div class="score-info flex-center">
+        <h1>Wins</h1>
+        <h1 class="player-1-score">Player 1 : 0</h1>
+        <h1 class="player-2-score">Player 2 : 0</h1>
+      </div>
+    </aside>
+
+    <div class="container flex-center">
+      <h1 class="round">Round 1</h1>
+      <h1 class="player">Player 1 : Choose any of the three</h1>
+      <div class="choice-box flex-center visible">
+        <div class="gun">
+          <button class="choice gun flex-center"><strong>🔫</strong></button>
+        </div>
+        <div class="water">
+          <button class="choice water flex-center"><strong>💧</strong></button>
+        </div>
+        <div class="snake">
+          <button class="choice snake flex-center"><strong>🐍</strong></button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const choiceBox = document.querySelector(".choice-box");
+      const roundText = document.querySelector(".round");
+      const playerText = document.querySelector(".player");
+      const choices = document.querySelectorAll(".choice");
+      const p1ScoreDisplay = document.querySelector(".player-1-score");
+      const p2ScoreDisplay = document.querySelector(".player-2-score");
+
+      let p1Choice, p2Choice;
+      let p1Score = 0;
+      let p2Score = 0;
+      let round = 1;
+      let playerTurn = 1;
+
+      choices.forEach((choice) => {
+        choice.addEventListener("click", () => handleChoice(choice));
+      });
+
+      const handleChoice = (choice) => {
+        if (playerTurn == 1) {
+          p1Choice = choice.textContent;
+          //   console.log("P1 choice => " + p1Choice);
+          playerText.textContent = "Player 2 : Choose any of the three";
+          playerTurn = 2;
+        } else {
+          p2Choice = choice.textContent;
+          //   console.log("P2 choice => " + p1Choice);
+          playerTurn = 1;
+          playerText.textContent = "Player 1 : Choose any of the three";
+          updateScore();
+          nextRound();
+        }
+      };
+
+      const nextRound = () => {
+        choiceBox.classList.remove("visible");
+        choiceBox.classList.add("hidden");
+
+        round++;
+
+        setTimeout(() => {
+          choiceBox.classList.remove("hidden");
+          choiceBox.classList.add("visible");
+          roundText.textContent = `Round ${round}`;
+          if (round == 6) {
+            alert(
+              p1Score == p2Score
+                ? "Player 1 and 2 have a draw!!"
+                : p1Score > p2Score
+                ? "Player 1 WINSS THE GAME!!"
+                : "Player 2 WINSS THE GAME!!"
+            );
+            round = 1;
+            p1Score = 0;
+            p2Score = 0;
+            p1ScoreDisplay.textContent = "Player 1 : 0";
+            p2ScoreDisplay.textContent = "Player 2 : 0";
+            roundText.textContent = `Round ${round}`;
+          }
+        }, 1500);
+      };
+
+      const updateScore = () => {
+        if (
+          (p1Choice == "🔫" && p2Choice == "🐍") ||
+          (p1Choice == "🐍" && p2Choice == "💧") ||
+          (p1Choice == "💧" && p2Choice == "🔫")
+        ) {
+          p1Score++;
+          p1ScoreDisplay.textContent = `Player 1 : ${p1Score}`;
+          //   alert(`Player 1 wons the round ${round}`);
+        } else if (
+          (p1Choice == "🔫" && p2Choice == "🔫") ||
+          (p1Choice == "🐍" && p2Choice == "🐍") ||
+          (p1Choice == "💧" && p2Choice == "💧")
+        ) {
+          p1Score++;
+          p2Score++;
+          p1ScoreDisplay.textContent = `Player 1 : ${p1Score}`;
+          p2ScoreDisplay.textContent = `Player 2 : ${p2Score}`;
+          //   alert(`Player 1 and 2 have a draw in round ${round}`);
+        } else {
+          p2Score++;
+          p2ScoreDisplay.textContent = `Player 2 : ${p2Score}`;
+          //   alert(`Player 2 wons the round ${round}`);
+        }
+      };
+    </script>
+  </body>
+</html>

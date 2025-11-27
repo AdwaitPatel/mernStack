@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game 3: Guess the Number</title>
+    <style>
+        * {
+        margin: 0%;
+        padding: 0%;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: black;
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 500px 1fr;
+        color: white;
+        gap: 2rem;
+        font-family: monospace;
+      }
+      .flex-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .flex-between {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .flex-around {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+      .flex-evenly {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+      .container {
+        flex-direction: column;
+        gap: 80px;
+      }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <select id="top-3-movies">
+            <option value="Breaking Bad">Breaking Bad</option>
+            <option value="Hancock">Hancock</option>
+            <option value="Delhi belly">Delhi belly</option>
+        </select>
+    </div>
+    <script>
+        const selected = document.getElementById("top-3-movies")
+        selected.addEventListener("change", () => {
+            console.log(selected.value)
+        })
+    </script>
+</body>
+</html>
