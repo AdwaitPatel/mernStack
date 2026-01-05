@@ -7,6 +7,6 @@
 4. rm -ri test (it will ask if we want to remove the file/folder)
 
 ## Topics discussed today
--- Learned about Unix, Linux and windows  
--- Diff b/w kernel(system side) and shell(user side) -> interpreter for kernel  
--- why async await is used when doing asynchronous tasks  
+- Learned about Unix, Linux and windows  
+- Diff b/w kernel(system side) and shell(user side) -> interpreter for kernel  
+- why async await is used when doing asynchronous tasks  
