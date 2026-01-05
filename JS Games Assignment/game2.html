@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Game 3: Guess the Number</title>
     <style>
-        * {
+      * {
         margin: 0%;
         padding: 0%;
         box-sizing: border-box;
@@ -13,8 +13,10 @@
       body {
         background-color: black;
         min-height: 100vh;
-        display: grid;
-        grid-template-columns: 500px 1fr;
+        display: flex;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         color: white;
         gap: 2rem;
         font-family: monospace;
@@ -41,23 +43,81 @@
       }
       .container {
         flex-direction: column;
-        gap: 80px;
+        gap: 50px;
+      }
+      .chances-left {
+        color: red;
+      }
+      input {
+        padding: 8px 20px;
+        font-size: 25px;
+        border-radius: 50px;
+        width: 250px;
+      }
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      button {
+        padding: 8px 20px;
+        font-size: 25px;
+        border-radius: 50px;
+        cursor: pointer;
+        background-color: greenyellow;
+      }
+      input[type="hidden"]::after {
+        content: "👁️";
       }
     </style>
-</head>
-<body>
-    <div class="container">
-        <select id="top-3-movies">
-            <option value="Breaking Bad">Breaking Bad</option>
-            <option value="Hancock">Hancock</option>
-            <option value="Delhi belly">Delhi belly</option>
-        </select>
+  </head>
+  <body>
+    <div class="container flex-center">
+      <h1 style="font-size: 30px">Guess the number (1 - 100)</h1>
+      <h1>You have "<span class="chances-left">5</span>" chances left</h1>
+
+      <form id="guess">
+        <input
+          type="number"
+          name="userGuess"
+          id="userGuess"
+          placeholder="Enter your guess"
+          max="100"
+          min="1"
+          required
+        />
+        <input type="password" name="" id="">
+
+        <button type="submit">Guess</button>
+      </form>
     </div>
     <script>
-        const selected = document.getElementById("top-3-movies")
-        selected.addEventListener("change", () => {
-            console.log(selected.value)
-        })
+      const form = document.getElementById("guess");
+      const input = document.getElementById("userGuess");
+      const chanceLeftDisplay = document.querySelector(".chances-left");
+      let chances = 5;
+
+      let randomNumber = Math.floor(Math.random() * 10);
+
+      form.addEventListener("submit", (e) => {
+        if (chances < 1) return;
+        e.preventDefault();
+
+        const userGuess = input.value;
+        chances--;
+
+        console.log(userGuess, randomNumber);
+
+        alert(
+          userGuess == randomNumber
+            ? "Guessed it right!!!!"
+            : userGuess > randomNumber
+            ? "Choose a smaller one"
+            : "Choose a greater one"
+        );
+        if (randomNumber == userGuess) return;
+        chanceLeftDisplay.textContent = chances;
+      });
     </script>
-</body>
+  </body>
 </html>
