@@ -16,7 +16,8 @@
 - ls -a (will list all the hidden files)
 - when hidden files are shown then ./(current dir) and ../(one dir down level)
 
-## i node ID
+## i(index) node ID
 - every file has a id which can be used to link files(ex. 40587587 day1.md 40699520 day2.md)
+- ls -l (shows permissions)
 - ln file1.txt(source file) file2.txt(new file) (ln used for linking)
 - it will be exactly like making a copy of a file
