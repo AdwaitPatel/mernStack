@@ -9,11 +9,14 @@
 - grep -ir "hello" NODEJS/*.txt (r will recusively check all the files inside the folder NODEJS)
 - grep -in "hello" *.txt (n will show the line  number)
 - grep -rI "hello" NODEJS/ (I will l exclude searching all the binary files, pdfs, imgs etc)
-- grep -E "(car|bike|truck)" *.txt (E is regular Expressions and () are used to group the words we need to search)
+- grep -E "(car|bike|truck)" *.txt (E is regular Expressions and () are used to group the words we need to search)  
+
 ## find
+
 - find works with name, size, time and permissions of a file
 - syntax : find <where_to_search> <conditions>
 - find . -name "day2.txt" (returns the file path if it exists)
 - find "day2.txt"
 - find day2.txt
-- find the difference between the above three
+- find the difference between the above three (ANS : the other two taking filname as a path even thought they are filenames and it'll return the path if that file exists but those two are not correct way to search)
+- find <path_to_search> <conditions> filename
