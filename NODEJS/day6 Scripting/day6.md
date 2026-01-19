@@ -32,3 +32,4 @@ done
 echo number $i
 done
 - prints numbers from 1 to 100 only even
+- 
