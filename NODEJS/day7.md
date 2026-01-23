@@ -9,4 +9,4 @@
 - git log (shows all the commits we've made)
 - MASTER vs MAIN branch
 - git reset file.txt (used to unstage files)
-- git restore file.txt (unstages file and ddeletes everything upto the last commit)
+- git restore file.txt (unstages file and deletes everything upto the last commit)
