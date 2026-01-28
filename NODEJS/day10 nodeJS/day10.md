@@ -2,7 +2,8 @@
 - JS Runtime environment
 - JS is single threaded and synchronous language
 - Blocking vs Non-Blocking code
-- Call stack and event loop  
+- Call stack and event loop
+- even though name is callstack it executes callbacks like queues(FIFO).  
 
 ```js
 // Blocking code
