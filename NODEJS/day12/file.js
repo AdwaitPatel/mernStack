@@ -15,3 +15,18 @@ import { crudFileSync, crudFileAsync } from "./fileSystem.js";
 // crudFileSync()
 crudFileAsync()
 
+/*
+
+// commonjs export/import
+
+const fs = require("fs");
+
+const var1 = {}
+const var2 = []
+
+module.export = {
+	var1,
+	var2
+}
+
+*/
