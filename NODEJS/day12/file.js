@@ -24,7 +24,7 @@ const fs = require("fs");
 const var1 = {}
 const var2 = []
 
-module.export = {
+module.exports = {
 	var1,
 	var2
 }
