@@ -22,3 +22,19 @@ exports.addUser = (req, res) => {
 	res.send("User is added successfully!!")
 }
 
+exports.addUserById = (req, res) => {
+	const id = req.params.id;
+	const name = req.query.name;
+
+	// see headers
+	console.log(req.headers)
+
+	userData.users.push({
+		id,
+		name
+	})
+	res.send("User is added successfully!!")
+}
+
+
+
