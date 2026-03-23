@@ -2,8 +2,8 @@ const app = require("./app")
 
 // env configs
 require("dotenv").config({
-	// path: ".env.prod",  // env for production
-	path: ".env.dev"  // env for production
+	path: ".env.prod",  // env for production
+	// path: ".env.dev"  // env for production
 })
 
 const PORT = process.env.PORT || 3000;
