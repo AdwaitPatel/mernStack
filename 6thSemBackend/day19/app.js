@@ -37,8 +37,8 @@ const authMiddleware = (req, res, next) => {
 }
 
 //  tasks -> 1. create role based middlewares
-//  		 2. create logs for each requests to server
 
+// create logs for each requests to server
 const createLogs = (req, res, next) => {
 	const logsDir = path.join(__dirname, "logs");
 
@@ -73,7 +73,6 @@ const createLogs = (req, res, next) => {
 
 	next();
 }
-
 app.use(createLogs);
 
 const adminMiddleware = (req, res, next) => {
