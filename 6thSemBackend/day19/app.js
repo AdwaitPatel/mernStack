@@ -1,5 +1,7 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
+const fs = require("fs");
+const path = require("path");
 
 require("dotenv").config({
 	path: ".env.dev"
@@ -34,6 +36,46 @@ const authMiddleware = (req, res, next) => {
 	}
 }
 
+//  tasks -> 1. create role based middlewares
+//  		 2. create logs for each requests to server
+
+const createLogs = (req, res, next) => {
+	const logsDir = path.join(__dirname, "logs");
+
+	if (!fs.existsSync(logsDir)) {
+		fs.mkdirSync(logsDir);
+	}
+
+	const logFilePath = path.join(__dirname, "logs", "request.log")
+
+	const logs = {
+		method: req.method,
+		url: req.originalUrl,
+		host: req.headers.host,
+		ip: req.ip,
+		body: req.body || "No body",
+		params: req.params,
+		query: req.query,
+	};
+
+	fs.appendFile(
+		logFilePath,
+		JSON.stringify({
+			...logs,
+			timestamp: new Date().toISOString()
+		}) + "\n",
+		(err) => {
+			if (err) {
+				console.error("Error writing log : ", err);
+			}
+		}
+	);
+
+	next();
+}
+
+app.use(createLogs);
+
 const adminMiddleware = (req, res, next) => {
 	const token = req.headers?.authorization?.split(" ")[1];
 
@@ -44,7 +86,7 @@ const adminMiddleware = (req, res, next) => {
 	try {
 		next();
 	} catch (err) {
-		res.send(" Admin")
+		res.send("Not Authorized for Admin")
 	}
 }
 
@@ -61,7 +103,8 @@ const adminMiddleware = (req, res, next) => {
 // app.use(authMiddleware)
 
 // to middleware work only for some specific routes
-app.use("/", authMiddleware, adminMiddleware,userRouter);
+// app.use("/", authMiddleware, adminMiddleware,userRouter);
+app.use("/", userRouter);
 app.use("/auth", authRouter);
 app.use("/student-api", studentRouter);
 

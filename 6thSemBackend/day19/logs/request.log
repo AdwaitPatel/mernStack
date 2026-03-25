@@ -1,0 +1,4 @@
+{"method":"GET","url":"/","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-03-25T05:42:12.590Z"}
+{"method":"GET","url":"/","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-03-25T05:42:20.026Z"}
+{"method":"GET","url":"/auth/login?username=Adwait&email=adp@gmail.com","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{"username":"Adwait","email":"adp@gmail.com"},"timestamp":"2026-03-25T05:47:38.547Z"}
+{"method":"POST","url":"/users/add","host":"localhost:8000","ip":"::1","body":{"id":8,"name":"new user 8"},"params":{},"query":{},"timestamp":"2026-03-25T05:47:59.285Z"}
