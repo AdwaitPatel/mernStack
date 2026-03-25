@@ -54,8 +54,8 @@ const createLogs = (req, res, next) => {
 		host: req.headers.host,
 		ip: req.ip,
 		body: req.body || "No body",
-		params: req.params,
-		query: req.query,
+		params: req.params || "No parameters",
+		query: req.query || "No query parameters",
 	};
 
 	fs.appendFile(
