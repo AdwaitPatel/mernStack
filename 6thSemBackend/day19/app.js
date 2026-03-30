@@ -13,7 +13,6 @@ const jwtToken = process.env.jwtToken;
 const userRouter = require("./routes/userRoutes");
 const authRouter = require("./routes/authRoutes");
 const studentRouter = require("./routes/studentRoutes");
-const { title } = require("process");
 
 const app = express();
 
