@@ -1,0 +1,12 @@
+<body style="margin: 100px 50px; background-color: black; color: aliceblue;">
+  <h1 style="text-align: center">You are on <%= home.title %> Page</h1>
+
+  <h1>College : <%= college %> </h1>
+
+  <h1>Other available Pages Preview</h1>
+  <hr>
+  <%- include("about", about) %>
+  <hr>
+  <%- include("login", login) %>
+  
+</body>

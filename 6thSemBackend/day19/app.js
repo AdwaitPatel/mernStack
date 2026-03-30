@@ -9,10 +9,11 @@ require("dotenv").config({
 
 const jwtToken = process.env.jwtToken;
 
-// Routes
+// Routes Import
 const userRouter = require("./routes/userRoutes");
 const authRouter = require("./routes/authRoutes");
 const studentRouter = require("./routes/studentRoutes");
+const { title } = require("process");
 
 const app = express();
 
@@ -37,6 +38,31 @@ const authMiddleware = (req, res, next) => {
 }
 
 //  tasks -> 1. create role based middlewares
+
+// to use EJS set this up kinda middleware for EJS
+app.set("view engine", "ejs");
+
+const userData = {
+	home: {title : "Home Page"},
+	login: {title : "Login Page"},
+	about: {title : "About"},
+}
+
+app.get("/home", (req, res) => {
+	// res.render("./views/home.ejs"); Don't need to specify full path and .ejs as already set up above
+
+	res.render("home", {college: "GLA", ...userData});
+})
+
+app.get("/about", (req, res) => {
+	res.render("about", userData.about);
+});
+
+app.get("/login", (req, res) => {
+	res.render("login", userData.login);
+});
+
+
 
 // create logs for each requests to server
 const createLogs = (req, res, next) => {
