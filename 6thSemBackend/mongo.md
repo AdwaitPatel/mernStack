@@ -125,6 +125,15 @@ db.podcasts.updateOne(
 )
 ```
 
+- $pull (removes values from an array that match a condition)
+
+```
+db.collection.updateOne(
+  { <filter> },
+  { $pull: { <arrayField>: <condition> } }
+)
+```
+
 ### Delete
 
 ```
@@ -193,8 +202,8 @@ db.collection.find(
 
 #### NOTE : Inclusion & Exclusion statements can't be combined in projections where \_id is an exception.
 
-
 ### Count documents
+
 - counts total numbers of documents
 
 ```
@@ -203,4 +212,27 @@ db.collection.countDocuments(
     {<options>}
 )
 ```
+
+### Updating inside Array of Objects
+
+- Use `$` (positional operator) to update the **first matching element** in an array.
+
+```
+db.users.updateOne(
+    { “marks.subject”: “CSE” },
+    { $set: { “marks.$.score”: 99 } }
+)
+```
+
+- Use `$[elem]` with `arrayFilters` to update **all matching elements**.
+
+```
+db.users.updateMany(
+    {},
+    { $set: { “marks.$[elem].score”: 99 } },
+    { arrayFilters: [{ “elem.subject”: “CSE” }] }
+)
+```
+
+- Directly using `"marks.score"` ❌ is incorrect because MongoDB doesn’t know which array element to update.
 
