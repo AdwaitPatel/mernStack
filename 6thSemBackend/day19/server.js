@@ -7,7 +7,11 @@ require("dotenv").config({
 	// path: ".env.dev"  // env for production
 })
 
-mongoose.connect("mongodb://localhost:27017/classDB")
+const MONGO_DB_URI = process.env.MONGO_DB_URI;
+const DATABASE_NAME = process.env.DATABASE_NAME;
+
+// mongoDB connection
+mongoose.connect(`${MONGO_DB_URI}/${DATABASE_NAME}`)
 	.then(() => console.log("Connected to DB"))
 	.catch((err) => console.log(err))
 
