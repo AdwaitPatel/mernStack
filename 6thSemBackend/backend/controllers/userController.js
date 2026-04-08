@@ -1,25 +1,82 @@
-const userData = require("../modules/userModules");
+const User = require("../models/user.models");
 
-exports.getUsers = (req, res) => {
-	res.json(userData);
-}
-
-exports.getUsersById = (req, res) => {
-	const userId = req.params.id;
-
-	const userDataById = userData.users.find(data => data.id == userId)
-	if (!userDataById) {
-		res.json({
-			"message": "Data not found with this id"
-		})
+exports.getUsers = async (req, res) => {
+	try {
+		const users = await User.find();
+		res.status(200).json({
+			success: true,
+			message: "All users data fetched",
+			data: users
+		});
+	} catch (error) {
+		res.status(500).json({
+			success: false,
+			message: "Something went wrong",
+			error: error.message
+		});
 	}
-	res.json(userDataById);
 }
 
-exports.addUser = (req, res) => {
-	const userInfo = req.body
-	userData.users.push(userInfo)
-	res.send("User is added successfully!!")
+exports.getUsersById = async (req, res) => {
+	try {
+		const userId = req.params.id;
+
+		const userData = await User.findOne({ _id: userId });
+
+		if (!userData) {
+			res.json({
+				"message": "Data not found with this id"
+			})
+		}
+
+		res.status(200).json({
+			success: true,
+			message: "User fetched successfully",
+			data: userData
+		});
+	} catch (error) {
+		res.status(500).json({
+			success: false,
+			message: "Error fetching user",
+			error: error.message
+		});
+	}
+}
+
+exports.addUser = async (req, res) => {
+	try {
+		const userInfo = req.body;
+
+		const existingUser = await User.findOne({ _id: userInfo._id });
+
+		if (existingUser) {
+			return res.status(400).json({
+				success: false,
+				message: "User already exists"
+			});
+		}
+		const newUser = await User.create(userInfo);
+
+		res.status(201).json({
+			success: true,
+			message: "User created successfully",
+			data: newUser
+		});
+	} catch (error) {
+		res.status(500).json({
+			success: false,
+			message: "Error creating user",
+			error: error.message
+		});
+	}
+}
+
+exports.updateUser = async (req, res) => {
+	const userUpdateInfo = req.body;
+
+	const findUser = await User.findOne({ _id: userUpdateInfo._id });
+
+	
 }
 
 exports.addUserById = (req, res) => {
