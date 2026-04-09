@@ -72,11 +72,38 @@ exports.addUser = async (req, res) => {
 }
 
 exports.updateUser = async (req, res) => {
-	const userUpdateInfo = req.body;
+	try {
+		const id = req.params.id;
+		const userUpdateInfo = req.body;
 
-	const findUser = await User.findOne({ _id: userUpdateInfo._id });
+		const updatedUser = await User.findByIdAndUpdate(
+			id,
+			userUpdateInfo,
+			{ new: true }
+		);
 
-	
+		console.log('Updating user => ', updatedUser);
+
+		if (!updatedUser) {
+			return res.status(404).json({
+				success: false,
+				message: "User not found"
+			});
+		}
+
+		res.status(200).json({
+			success: true,
+			message: "User updated successfully",
+			data: updatedUser
+		});
+	} catch (error) {
+		res.status(500).json({
+			success: false,
+			message: "Error updating user",
+			error: error.message
+		});
+	}
+
 }
 
 exports.addUserById = (req, res) => {

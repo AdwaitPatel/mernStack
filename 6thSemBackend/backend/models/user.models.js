@@ -17,7 +17,7 @@ const userSchema = mongoose.Schema({
 			"score": Number
 		}
 	]
-}); // here add __v argument to disable the version of the document
+}, { versionKey: false }); // here add __v argument to disable the version of the document
 
 const User = mongoose.model("User", userSchema);
 
