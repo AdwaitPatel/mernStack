@@ -24,10 +24,10 @@ exports.getUsersById = async (req, res) => {
 		const userData = await User.findOne({ _id: userId });
 
 		if (!userData) {
-			res.json({
+			return res.status(404).json({
 				success: false,
 				message: "Data not found with this id"
-			})
+			});
 		}
 
 		res.status(200).json({
@@ -109,7 +109,7 @@ exports.deleteUser = async (req, res) => {
 	try {
 		const id = req.params.id;
 
-		const deletedUser = await User.findByIdAndDelete({ _id: id });
+		const deletedUser = await User.findByIdAndDelete(id);
 
 		if (!deletedUser) {
 			return res.status(404).json({

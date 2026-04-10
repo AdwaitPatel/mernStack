@@ -2,6 +2,7 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
 const path = require("path");
+const URL = require("./models/url.models");
 
 require("dotenv").config({
 	path: ".env.dev"
@@ -36,21 +37,55 @@ const authMiddleware = (req, res, next) => {
 	}
 }
 
+// const urlRedirectMiddleware = async (req, res, next) => {
+// 	const requestUrl = req.url.slice(1);
+// 	console.log(requestUrl);
+
+// 	const shortUrl = await URL.findOne({ originalUrl: requestUrl });
+
+// 	if (shortUrl != null) {
+// 		return res.redirect(`/${shortUrl.shortUrl}`);
+// 	}
+
+
+// 	next();
+// }
+
+const urlRedirectMiddleware = async (req, res, next) => {
+	try {
+		const requestUrl = req.path.slice(1);
+
+		const urlDoc = await URL.findOne({ shortUrl: requestUrl });
+
+		if (urlDoc) {
+			console.log("Redirecting to =>", urlDoc.originalUrl);
+			return res.redirect(`/${urlDoc.originalUrl}`);
+		}
+
+		next();
+	} catch (error) {
+		console.error(error);
+		next();
+	}
+};
+
+// app.use(urlRedirectMiddleware);
+
 //  tasks -> 1. create role based middlewares
 
 // to use EJS set this up kinda middleware for EJS
 app.set("view engine", "ejs");
 
 const userData = {
-	home: {title : "Home Page"},
-	login: {title : "Login Page"},
-	about: {title : "About"},
+	home: { title: "Home Page" },
+	login: { title: "Login Page" },
+	about: { title: "About" },
 }
 
 app.get("/home", (req, res) => {
 	// res.render("./views/home.ejs"); Don't need to specify full path and .ejs as already set up above
 
-	res.render("home", {college: "GLA", ...userData});
+	res.render("home", { college: "GLA", ...userData });
 })
 
 app.get("/about", (req, res) => {
