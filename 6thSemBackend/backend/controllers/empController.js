@@ -25,7 +25,7 @@ exports.createEmployees = (req, res) => {
 
 exports.aggregateDemo = async (req, res) => {
 
-	// Total employess in IT department
+	// Q. Total employess in IT department
 	// const empData = await Employee.aggregate([
 	// 	{
 	// 		"$match": {
@@ -42,7 +42,7 @@ exports.aggregateDemo = async (req, res) => {
 	// 	}
 	// ]);
 
-	// find average salary for each departent
+	// Q. Find average salary for each departent
 	// const empData = await Employee.aggregate([
 	// 	{
 	// 		"$group": {
@@ -54,7 +54,7 @@ exports.aggregateDemo = async (req, res) => {
 	// 	}
 	// ]);
 
-	// find highest salary for each departent
+	// Q. Find highest salary for each departent
 	// const empData = await Employee.aggregate([
 	// 	{
 	// 		"$group": {
@@ -66,39 +66,82 @@ exports.aggregateDemo = async (req, res) => {
 	// 	}
 	// ]);
 
-	// top 3 salaried employees in each dapartment
+	// Q. Top 3 salaried employees in each dapartment
+	// [
+	// 	{
+	// 		_id: "HR",
+	// 		top3: [
+	// 			"user1",
+	// 			"user2",
+	// 			"user3"
+	// 		]
+	// 	}
+	// ]
 
-	[
+	// const empData = await Employee.aggregate([
+	// 	{
+	// 		$sort: {
+	// 			salary: -1
+	// 		}
+	// 	},
+	// 	{
+	// 		$group: {
+	// 			_id: "$department",
+	// 			top3: {
+	// 				$push: {
+	// 					empName: "$name",
+	// 					salary: "$salary"
+	// 				}
+	// 			}
+	// 		}
+	// 	},
+	// 	{
+	// 		$project: {
+	// 			top3: {
+	// 				$slice: ["$top3", 3]
+	// 			}
+	// 		}
+	// 	}
+	// ]);
+
+	// Q. count salary by range like 20000-30000
+	// [
+	// 	{
+	// 		_id: "IT",
+	// 		range: "10000 - 20000",
+	// 		totalEmployess: 5
+	// 	}
+	// ]
+
+	const empData = await Employee.aggregate([
+
 		{
-			department: "HR",
-			top3: [
-				"Adi",
-				"Padi",
-				"dadi"
-			]
+			$bucket: {
+			groupBy: "$salary",
+			boundaries: [30000, 50000, 70000, 90000],
+			default: "Other",
+			output: {
+				employees: {
+				$push: {
+					department: "$department"
+				}
+				}
+				}
+			}
 		},
 		{
-			department: "HR",
-			top3: [
-				"Adi",
-				"Padi",
-				"dadi"
-			]
-		}
-	]
-
-	const empData = await Employee.aggregate()
-	
-
-	// count salary by range like 1lakh-2lakh
-	[
+			$unwind: "$employees"
+		},
 		{
-			_id: "IT",
-			range: "10000 - 50000",
-			totalEmployess: 5
+			$group: {
+				_id: {
+					range: "$_id",
+					department: "$employees.department"
+				},
+				totalEmployees: { $sum: 1 }
+			}
 		}
-	]
+	]);
 
-	
 	res.json(empData);
 }
