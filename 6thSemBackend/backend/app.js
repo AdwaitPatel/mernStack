@@ -14,6 +14,7 @@ const jwtToken = process.env.jwtToken;
 const userRouter = require("./routes/userRoutes");
 const authRouter = require("./routes/authRoutes");
 const studentRouter = require("./routes/studentRoutes");
+const empRouter = require("./routes/empRoutes");
 
 const app = express();
 
@@ -166,5 +167,6 @@ const adminMiddleware = (req, res, next) => {
 app.use("/", userRouter);
 app.use("/auth", authRouter);
 app.use("/student-api", studentRouter);
+app.use("/emp", empRouter);
 
 module.exports = app;

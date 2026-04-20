@@ -22,6 +22,17 @@ const userSchema = mongoose.Schema({
 	]
 }, { versionKey: false }); // here add __v argument to disable the version of the document
 
+
+userSchema.pre("find", function (next) {
+	console.log("User find is done!!")
+	next;
+});
+
+userSchema.pre("findByIdAndUpdate", function (next) {
+	console.log("User update is done!!")
+	next;
+});
+
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;

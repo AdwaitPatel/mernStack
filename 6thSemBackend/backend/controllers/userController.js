@@ -80,7 +80,9 @@ exports.updateUser = async (req, res) => {
 		const updatedUser = await User.findByIdAndUpdate(
 			id,
 			userUpdateInfo,
-			{ new: true }
+			{
+				returnDocument: "after"
+			}
 		);
 
 		if (!updatedUser) {

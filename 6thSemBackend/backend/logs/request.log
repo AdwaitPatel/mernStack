@@ -114,3 +114,48 @@
 {"method":"GET","url":"/api/v1/user-service/get-all-users","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-04-10T11:06:48.447Z"}
 {"method":"GET","url":"/users/5","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-04-10T11:11:19.884Z"}
 {"method":"GET","url":"/api/v1/user-service/get-all-users","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-04-10T11:12:46.082Z"}
+{"method":"GET","url":"/users","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T05:00:54.730Z"}
+{"method":"GET","url":"/","host":"172.16.150.84:8000","ip":"::ffff:172.16.151.150","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T05:02:30.163Z"}
+{"method":"GET","url":"/users","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T05:02:43.055Z"}
+{"method":"GET","url":"/","host":"172.16.150.84:8000","ip":"::ffff:172.16.151.150","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T05:03:10.331Z"}
+{"method":"GET","url":"/","host":"172.16.150.84:8000","ip":"::ffff:172.16.151.150","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T05:03:10.358Z"}
+{"method":"GET","url":"/index.asp","host":"172.16.150.84:8000","ip":"::ffff:172.16.151.150","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T05:03:10.407Z"}
+{"method":"GET","url":"/PSIA/System/deviceInfo","host":"172.16.150.84:8000","ip":"::ffff:172.16.151.150","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T05:03:10.431Z"}
+{"method":"GET","url":"/loginMsg.js","host":"172.16.150.84","ip":"::ffff:172.16.151.150","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T05:03:10.462Z"}
+{"method":"GET","url":"/cgi/get.cgi?cmd=home_login","host":"172.16.150.84","ip":"::ffff:172.16.151.150","body":"No body","params":{},"query":{"cmd":"home_login"},"timestamp":"2026-04-20T05:03:10.493Z"}
+{"method":"GET","url":"/cgi-bin/param.cgi?get_device_conf","host":"172.16.150.84:8000","ip":"::ffff:172.16.151.150","body":"No body","params":{},"query":{"get_device_conf":""},"timestamp":"2026-04-20T05:03:10.515Z"}
+{"method":"GET","url":"/cgi-bin/param.cgi?get_system_conf","host":"172.16.150.84:8000","ip":"::ffff:172.16.151.150","body":"No body","params":{},"query":{"get_system_conf":""},"timestamp":"2026-04-20T05:03:15.581Z"}
+{"method":"GET","url":"/current_config/passwd","host":"172.16.150.84:8000","ip":"::ffff:172.16.151.150","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T05:03:15.630Z"}
+{"method":"GET","url":"/current_config/Account1","host":"172.16.150.84:8000","ip":"::ffff:172.16.151.150","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T05:03:15.649Z"}
+{"method":"GET","url":"/cgi-bin/param.cgi?get_network_conf","host":"172.16.150.84:8000","ip":"::ffff:172.16.151.150","body":"No body","params":{},"query":{"get_network_conf":""},"timestamp":"2026-04-20T05:03:15.716Z"}
+{"method":"GET","url":"/shell?ps","host":"172.16.150.84:8000","ip":"::ffff:172.16.151.150","body":"No body","params":{},"query":{"ps":""},"timestamp":"2026-04-20T05:03:15.734Z"}
+{"method":"POST","url":"/boaform/admin/formLogin","host":"172.16.150.84:8000","ip":"::ffff:172.16.151.150","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T05:03:15.756Z"}
+{"method":"POST","url":"//webs/sysTimeCfgEx","host":"172.16.150.84:8000","ip":"::ffff:172.16.151.150","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T05:03:15.779Z"}
+{"method":"GET","url":"/users","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T05:05:02.325Z"}
+{"method":"GET","url":"/users","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T05:05:21.103Z"}
+{"method":"GET","url":"/users","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T05:07:11.188Z"}
+{"method":"GET","url":"/users","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T05:07:28.156Z"}
+{"method":"GET","url":"/users","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T05:08:15.288Z"}
+{"method":"PUT","url":"/users/5","host":"localhost:8000","ip":"::1","body":{"course":"B.Tech","skills":["YouTube"],"address":{"city":"Mathura","pincode":"281006"},"isActive":true,"marks":[{"subject":"CSE","score":75},{"subject":"DSA","score":90},{"subject":"OS","score":94}]},"params":{},"query":{},"timestamp":"2026-04-20T05:10:42.659Z"}
+{"method":"PUT","url":"/users/5","host":"localhost:8000","ip":"::1","body":{"course":"B.Tech","skills":["YouTube"],"address":{"city":"Mathura","pincode":"281006"},"isActive":true,"marks":[{"subject":"CSE","score":75},{"subject":"DSA","score":90},{"subject":"OS","score":94}]},"params":{},"query":{},"timestamp":"2026-04-20T05:14:52.133Z"}
+{"method":"PUT","url":"/users/5","host":"localhost:8000","ip":"::1","body":{"course":"MBA","skills":["YouTube shorts","insta doomscroolling"],"address":{"city":"Mathura","pincode":"281006"},"isActive":true,"marks":[{"subject":"CSE","score":75},{"subject":"DSA","score":90},{"subject":"OS","score":94}]},"params":{},"query":{},"timestamp":"2026-04-20T05:15:23.949Z"}
+{"method":"PUT","url":"/users/5","host":"localhost:8000","ip":"::1","body":{"course":"MBA","skills":["YouTube shorts","insta doomscroolling"],"address":{"city":"Mathura","pincode":"281006"},"isActive":true,"marks":[{"subject":"CSE","score":75},{"subject":"DSA","score":90},{"subject":"OS","score":94}]},"params":{},"query":{},"timestamp":"2026-04-20T05:15:41.383Z"}
+{"method":"GET","url":"/users","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T05:15:52.281Z"}
+{"method":"GET","url":"/users/5","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T05:15:56.720Z"}
+{"method":"PUT","url":"/users/5","host":"localhost:8000","ip":"::1","body":{"course":"MBA","skills":["YouTube shorts","insta doomscroolling"],"address":{"city":"Mathura","pincode":"281006"},"isActive":true,"marks":[{"subject":"CSE","score":75},{"subject":"DSA","score":90},{"subject":"OS","score":94}]},"params":{},"query":{},"timestamp":"2026-04-20T05:17:33.307Z"}
+{"method":"GET","url":"/emp/create-emp","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T05:33:16.089Z"}
+{"method":"GET","url":"/emp/create-emp","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T05:51:09.081Z"}
+{"method":"GET","url":"/emp/agg","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T05:52:26.841Z"}
+{"method":"GET","url":"/emp/agg","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T05:54:00.614Z"}
+{"method":"GET","url":"/emp/agg","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T05:54:09.112Z"}
+{"method":"GET","url":"/emp/agg","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T05:57:07.431Z"}
+{"method":"GET","url":"/emp/agg","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T05:57:49.629Z"}
+{"method":"GET","url":"/emp/agg","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T05:58:05.476Z"}
+{"method":"GET","url":"/emp/agg","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T05:58:13.807Z"}
+{"method":"GET","url":"/emp/agg","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T06:00:55.152Z"}
+{"method":"GET","url":"/emp/agg","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T06:04:11.821Z"}
+{"method":"GET","url":"/emp/agg","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T06:12:49.669Z"}
+{"method":"GET","url":"/emp/agg","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T06:16:05.829Z"}
+{"method":"GET","url":"/emp/agg","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T06:19:49.207Z"}
+{"method":"GET","url":"/emp/agg","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T06:19:59.111Z"}
+{"method":"GET","url":"/emp/agg","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-04-20T06:20:23.569Z"}
