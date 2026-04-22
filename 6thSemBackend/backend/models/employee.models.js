@@ -9,7 +9,7 @@ const empSchema = mongoose.Schema({
 	department: String,
 	salary: Number,
 	age: Number,
-}, { versionKey: false }); // here add __v argument to disable the version of the document
+}, { versionKey: false });
 
 const Employee = mongoose.model("Employee", empSchema);
 

@@ -117,15 +117,15 @@ exports.aggregateDemo = async (req, res) => {
 
 		{
 			$bucket: {
-			groupBy: "$salary",
-			boundaries: [30000, 50000, 70000, 90000],
-			default: "Other",
-			output: {
-				employees: {
-				$push: {
-					department: "$department"
-				}
-				}
+				groupBy: "$salary",
+				boundaries: [30000, 50000, 70000, 90000],
+				default: "Other",
+				output: {
+					employees: {
+						$push: {
+							department: "$department"
+						}
+					}
 				}
 			}
 		},
@@ -144,4 +144,16 @@ exports.aggregateDemo = async (req, res) => {
 	]);
 
 	res.json(empData);
+}
+
+exports.createNewEmployee = async (req, res) => {
+	const newEmployeeData = req.body;
+
+	const newEmployee = await Employee.insertOne(newEmployeeData);
+
+	res.json({
+		success: true,
+		message: "New Employee created successfully",
+		data: newEmployee
+	});
 }

@@ -16,6 +16,9 @@ const authRouter = require("./routes/authRoutes");
 const studentRouter = require("./routes/studentRoutes");
 const empRouter = require("./routes/empRoutes");
 
+// joi
+const userValidate = require("./validation/userValidation");
+
 const app = express();
 
 // middleware to read json from post request
@@ -168,5 +171,8 @@ app.use("/", userRouter);
 app.use("/auth", authRouter);
 app.use("/student-api", studentRouter);
 app.use("/emp", empRouter);
+
+// JOI working
+app.use("/api/users", userRouter)
 
 module.exports = app;
