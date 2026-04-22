@@ -265,3 +265,6 @@
 {"method":"POST","url":"/emp/create","host":"localhost:8000","ip":"::1","body":{"id":141,"name":"Employee 1","department":"STAFF","salary":30000,"age":45},"params":{},"query":{},"timestamp":"2026-04-22T06:19:42.292Z"}
 {"method":"POST","url":"/emp/create","host":"localhost:8000","ip":"::1","body":{"id":141,"name":"Employee 1","department":"STAFF","salary":30000,"age":45},"params":{},"query":{},"timestamp":"2026-04-22T06:20:00.224Z"}
 {"method":"POST","url":"/emp/create","host":"localhost:8000","ip":"::1","body":{"id":141,"name":"Employee 1","department":"STAFF","salary":30000,"age":45},"params":{},"query":{},"timestamp":"2026-04-22T06:20:34.968Z"}
+{"method":"POST","url":"/api/users/register","host":"localhost:8000","ip":"::1","body":{"name":"Ramu kaka","phone":"1111111111","email":"demo@gmail.com","password":"12qw12qw"},"params":{},"query":{},"timestamp":"2026-04-22T08:10:56.781Z"}
+{"method":"DELETE","url":"/users/141","host":"localhost:8000","ip":"::1","body":"No body","params":{},"query":{},"timestamp":"2026-04-22T08:14:56.645Z"}
+{"method":"POST","url":"/emp/create","host":"localhost:8000","ip":"::1","body":{"id":141,"name":"Employee 1","department":"STAFF","salary":30000,"age":45},"params":{},"query":{},"timestamp":"2026-04-22T08:16:10.313Z"}
